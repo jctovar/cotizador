@@ -43,7 +43,7 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope, $http) {
     
-    console.log(getinvoices.handleSuccess());
+    var request = getinvoices();
     
     
     /*$http({
