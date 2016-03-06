@@ -1,9 +1,10 @@
 <ion-view view-title="Cotizaciones">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.quotation_id}} - {{playlist.customer_id}}
-          <p>{{playlist.quotation_date}}</p>
+      <ion-item ng-repeat="invoice in playlists" href="#/app/playlists/{{invoice.quotation_id}}">
+        {{invoice.quotation_id}} - {{invoice.customer_name}}
+          <p>{{invoice.customer_company}}</p>
+          <p>{{invoice.quotation_date}}</p>
       </ion-item>
     </ion-list>
   </ion-content>

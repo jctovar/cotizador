@@ -41,14 +41,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.customers', {
+      url: '/customers',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/customers.html',
+          controller: 'CustomersCtrl'
         }
       }
     })
+    
+ .state('app.customer', {
+    url: '/customers/:customerId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/customer.html',
+        controller: 'CustomerCtrl'
+      }
+    }
+  })
+  
     .state('app.playlists', {
       url: '/playlists',
       views: {

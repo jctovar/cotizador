@@ -41,48 +41,66 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope, $http) {
-    
-    var request = getinvoices();
-    
-    
-    /*$http({
-      method: 'GET',
-      url: 'https://goritec.com:8100/invoice'
-    }).then(function success(response) {
-        console.log(JSON.stringify(success.invoice));
-        $scope.playlists = response.invoice;
+.controller('CustomersCtrl', function($scope, $http) {
+    // load all invoices
+    $http({
+        method: 'GET',
+        url: 'https://goritec.com:8100/customer'
+    })
+    .then(function success(response) {
+        console.log(JSON.stringify(response.data.customer));
+        $scope.customers = response.data.customer;
     }, function error(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-    });*/
-    
-    
-     /*responsePromise = $http.get("https://goritec.com:8100/invoice");
-    
-    responsePromise.success(function(data, status, headers, config) {
-        console.log(JSON.stringify(data.invoice));
-        $scope.playlists = data.invoice;
-    });*/
-   
-  /*$scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];*/
+        alert("Error de conexion...!");
+    });
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('CustomerCtrl', function($scope, $http, $stateParams) {
+    console.log($stateParams.customerId);
+    // load invoice
+    $http({
+        method: 'GET',
+        url: 'https://goritec.com:8100/customer/' + $stateParams.customerId
+    })
+    .then(function success(response) {
+        console.log(JSON.stringify(response.data.customer[0]));
+        $scope.invoice = response.data.customer[0];
+    }, function error(response) {
+        alert("Error de conexion...!");
+    });
+})
+
+.controller('PlaylistsCtrl', function($scope, $http) {
+    // load all invoices
+    $http({
+        method: 'GET',
+        url: 'https://goritec.com:8100/invoice'
+    })
+    .then(function success(response) {
+        //console.log(JSON.stringify(response.data.invoice));
+        $scope.playlists = response.data.invoice;
+    }, function error(response) {
+        alert("Error de conexion...!");
+    });
+})
+
+.controller('PlaylistCtrl', function($scope, $http, $stateParams) {
+    // load invoice
+    $http({
+        method: 'GET',
+        url: 'https://goritec.com:8100/invoice/' + $stateParams.playlistId
+    })
+    .then(function success(response) {
+        console.log(JSON.stringify(response.data.invoice[0]));
+        $scope.invoice = response.data.invoice[0];
+    }, function error(response) {
+        alert("Error de conexion...!");
+    });
 });
 
-function getinvoices(){
-    var request = $http({
-      method: 'GET',
-      url: 'https://goritec.com:8100/invoice'
-    });
-    
-    return(request.then( handleSuccess, handleError ));
+
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
 }
