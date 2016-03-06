@@ -72,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: '/invoices/:playlistId',
+    url: '/invoices/:invoiceId',
     views: {
       'menuContent': {
         templateUrl: 'templates/invoice.html',

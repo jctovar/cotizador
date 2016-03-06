@@ -1,11 +1,13 @@
 <ion-view view-title="Cotizaciones">
   <ion-content>
+    <ion-refresher pulling-text="Arrastre para recargar" on-refresh="doRefresh()">
+    </ion-refresher>
     <ion-list>
       <ion-item class="item-icon-left" ng-repeat="invoice in invoices" href="#/app/invoices/{{invoice.quotation_id}}">
         <i class="icon ion-star"></i>
-            {{invoice.quotation_id}} - {{invoice.customer_name}}
+            {{invoice.quotation_id | numberFixedLen:6}} - {{invoice.customer_name}}
             <p>{{invoice.customer_company}}</p>
-            <p>{{invoice.quotation_date}}</p>
+            <p>{{invoice.quotation_date | date:'medium'}}</p>
             <span class="item-note">{{invoice.quotation_date}}</span>
       </ion-item>
     </ion-list>

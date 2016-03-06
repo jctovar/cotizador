@@ -5,7 +5,7 @@
     <ion-list>
       <ion-item class="item-avatar"" ng-repeat="customer in customers" href="#/app/customers/{{customer.customer_id}}">
         <img src="img/user.png">
-        {{customer.customer_name}}
+        {{customer.customer_name | uppercase}}
           <p>{{customer.customer_company}}</p>
       </ion-item>
     </ion-list>

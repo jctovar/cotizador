@@ -3,9 +3,9 @@
     <div class="list card">
         <div class="item item-avatar">
             <img src="img/user.png">
-            <h2>{{invoice.customer_name}}</h2>
-            <p>{{invoice.customer_email}}</p>
-            <p>{{invoice.customer_company}}</p>
+            <h2>{{customer.customer_name | uppercase}}</h2>
+            <p>{{customer.customer_email | lowercase}}</p>
+            <p>{{customer.customer_company}}</p>
         </div>
         <div class="item item-body">
             <p>
