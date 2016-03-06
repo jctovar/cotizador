@@ -1,0 +1,30 @@
+<ion-view view-title="Cotización">
+  <ion-content>
+      <div class="list card">
+        <div class="item">
+            <h2>Cotización {{invoice.quotation_id}}</h2>
+        </div>
+        <div class="item item-body">      
+            <p>{{invoice.quotation_date}}</p>
+            <p>{{invoice.customer_name}} <{{invoice.customer_email}}></p>
+            <p>{{invoice.customer_company}}</p>
+       </div>
+    </div>
+    <div class="list list-inset">
+      <div class="item" ng-repeat="detail in details" href="#/app/playlists/{{detail.product_id}}">
+        {{detail.product_name}}
+        <p>SKU {{detail.product_sku}}</p>
+        <span class="item-note">{{detail.product_qty}} unidades por ${{detail.product_shell}} <strong>[${{detail.product_import}}]</strong></span>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col col-25 col-offset-75">Subtotal<span class="item-note">$ 000.00</span></div>
+    </div>
+    <div class="row">
+        <div class="col col-25 col-offset-75">Impuesto<span class="item-note">$ 000.00</span></div>
+    </div>
+    <div class="row">
+        <div class="col col-25 col-offset-75">Total<span class="item-note">$ 000.00</span></div>
+    </div>
+  </ion-content>
+</ion-view>

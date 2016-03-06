@@ -1,4 +1,12 @@
 {
   "name": "Cotizador",
-  "app_id": ""
+  "app_id": "04630cac",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

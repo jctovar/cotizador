@@ -1,7 +1,10 @@
 <ion-view view-title="Clientes">
   <ion-content>
+    <ion-refresher pulling-text="Arrastre para recargar" on-refresh="doRefresh()">
+    </ion-refresher>
     <ion-list>
-      <ion-item ng-repeat="customer in customers" href="#/app/customers/{{customer.customer_id}}">
+      <ion-item class="item-avatar"" ng-repeat="customer in customers" href="#/app/customers/{{customer.customer_id}}">
+        <img src="img/user.png">
         {{customer.customer_name}}
           <p>{{customer.customer_company}}</p>
       </ion-item>
