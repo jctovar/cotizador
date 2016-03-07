@@ -4,11 +4,12 @@
   <description>
         Sistema para hacer cotizaciones online.
     </description>
-  <author email="jctovar@cuatrocolibri.com.mx" href="https://apps.cuatrocolibri.com.mx/cotizador">
-      Your Name Here
+  <author email="contacto@cuatrocolibri.com.mx" href="https://apps.cuatrocolibri.com.mx/cotizador">
+      Cuatro Colibrí SA de CV
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <access origin="https://goritec.com"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -68,5 +69,4 @@
     <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
   </platform>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
-  <access origin="https://goritec.com" />
 </widget>
