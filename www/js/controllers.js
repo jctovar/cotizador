@@ -41,8 +41,8 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
   };
 })
 // customers get all
-.controller('CustomersCtrl', function($scope, customer, $ionicModal) {
-    $scope.data = {};
+.controller('CustomersCtrl', function($scope, customer) {
+    $scope.data = {};   // for clear search
     $scope.listCanSwipe = true;
     
     $scope.clearSearch = function() {
@@ -64,11 +64,11 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
     };
 })
 // customer get
-.controller('CustomerCtrl', function($scope, customer, $stateParams) {
+.controller('CustomerCtrl', function($scope, customer, $stateParams, $ionicModal) {
     var query = customer.get({ id: $stateParams.customerId }, function() {
         //console.log(JSON.stringify(query.customer[0]));
         $scope.customer = query.customer[0];
-    });
+    })
     
     // modal edit view 
     $ionicModal.fromTemplateUrl('templates/customer_edit.html', {
