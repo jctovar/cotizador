@@ -2,11 +2,27 @@
   <ion-content>
     <ion-refresher pulling-text="Arrastre para recargar" on-refresh="doRefresh()">
     </ion-refresher>
-    <ion-list>
-      <ion-item class="item-avatar"" ng-repeat="customer in customers" href="#/app/customers/{{customer.customer_id}}">
+    
+    <!-- Inicia caja de busqueda -->
+    <div id="search-box" class="bar bar-header item-input-inset">
+        <div class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Buscar..." ng-model="data.searchQuery">
+            <i class="clear-search icon ion-ios-close-empty" ng-click="clearSearch()"></i>
+        </div>
+        <button class="button button-clear" ng-click="clearSearch()">
+            Cancelar
+        </button>
+    </div>
+    
+    <ion-list can-swipe="listCanSwipe">
+      <ion-item class="item-avatar"" ng-repeat="customer in customers | filter: data.searchQuery" href="#/app/customers/{{customer.customer_id}}">
         <img src="img/user.png">
-        {{customer.customer_name | uppercase}}
+          {{customer.customer_name | uppercase}}
           <p>{{customer.customer_company}}</p>
+          <ion-option-button class="button-calm" ng-click="openModal(customer)">
+            Editar
+          </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

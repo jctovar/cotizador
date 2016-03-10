@@ -18,7 +18,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       //StatusBar.styleDefault();
-      StatusBar.backgroundColorByName("blue");
+      StatusBar.backgroundColorByHexString('#0099CC');
+      //StatusBar.hide();
     }
   });
 })
@@ -56,7 +57,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
     url: '/customers/:customerId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/customer.html',
+        templateUrl: 'templates/customer_view.html',
         controller: 'CustomerCtrl'
       }
     }

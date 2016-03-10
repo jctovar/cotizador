@@ -41,7 +41,15 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
   };
 })
 // customers get all
-.controller('CustomersCtrl', function($scope, customer) {
+.controller('CustomersCtrl', function($scope, customer, $ionicModal) {
+    $scope.data = {};
+    $scope.listCanSwipe = true;
+    
+    $scope.clearSearch = function() {
+	    $scope.data.searchQuery = '';
+	    console.log('Clear...');
+    };
+    
     var query = customer.get(function() {
         $scope.customers = query.customer;
     });
@@ -61,6 +69,28 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
         //console.log(JSON.stringify(query.customer[0]));
         $scope.customer = query.customer[0];
     });
+    
+    // modal edit view 
+    $ionicModal.fromTemplateUrl('templates/customer_edit.html', {
+        scope: $scope,
+        animation: 'slide-in-up',
+        focusFirstInput: true
+    }).then(function(modal) {
+        $scope.modal = modal
+    });
+    
+    $scope.openModal = function(customer) {
+        console.log(customer);
+        $scope.modal.show()
+    }
+
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
+
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });  
 })
 // invoices get all
 .controller('InvoicesCtrl', function($scope, invoice) {
@@ -93,4 +123,13 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
     var entry = customer.get({ id: '1' }, function() {
         console.log(JSON.stringify(entry));
     });
+})
+
+.controller('AboutCtrl', function($scope, $ionicPlatform, $cordovaAppVersion) {
+	// Función para mostrar la version de la app
+	$ionicPlatform.ready(function() {
+		$cordovaAppVersion.getAppVersion().then(function (version) {
+			$scope.appVersion = version;
+		});	
+	});
 });
