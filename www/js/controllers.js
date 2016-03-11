@@ -92,6 +92,7 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
             
             customer.save($scope.add, function() {
                 //data saved. do something here.
+                $scope.closeModal();
             }); //saves an entry. Assuming $scope.entry is the Entry object  
         };
 })
@@ -129,6 +130,7 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
                 //console.log('mas...'+ JSON.stringify($scope.entry.customer[0]));
                 $scope.entry.customer = $scope.customer;
                 $scope.entry.$update(function() {
+                    $scope.closeModal();
                 });
             });
         };  
