@@ -1,36 +1,36 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Editar cliente</h1>
+    <h1 class="title">Nuevo cliente</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeModal()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doUpdate()">
+    <form ng-submit="doAdd()">
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Compañia</span>
-          <input type="text" ng-model="customer.customer_company">
+          <input type="text" ng-model="add.customer_company">
         </label>
         <label class="item item-input">
           <span class="input-label">Nombre</span>
-          <input type="text" ng-model="customer.customer_name">
+          <input type="text" ng-model="add.customer_name">
         </label>
         <label class="item item-input">
           <span class="input-label">Correo electrónico</span>
-          <input type="text" ng-model="customer.customer_email">
+          <input type="text" ng-model="add.customer_email">
         </label>
         <label class="item item-input">
           <span class="input-label">Dirección 1</span>
-          <input type="text" ng-model="customer.customer_address_1">
+          <input type="text" ng-model="add.customer_address_1">
         </label>
         <label class="item item-input">
           <span class="input-label">Dirección 2</span>
-          <input type="text" ng-model="customer.customer_address_2">
+          <input type="text" ng-model="add.customer_address_2">
         </label>
         <label class="item item-input">
           <span class="input-label">Código Postal</span>
-          <input type="text" ng-model="customer.customer_address_cp">
+          <input type="text" ng-model="add.customer_address_cp">
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Guardar</button>

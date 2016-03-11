@@ -41,7 +41,8 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
   };
 })
 // customers get all
-.controller('CustomersCtrl', function($scope, customer) {
+.controller('CustomersCtrl', function($scope, customer, $ionicModal, $timeout) {
+    $scope.add = {};
     $scope.data = {};   // for clear search
     $scope.listCanSwipe = true;
     
@@ -61,36 +62,76 @@ angular.module('starter.controllers', ['main.models', 'main.services'])
         console.log('Incoming todo ' + Date.now());
         $scope.$broadcast('scroll.refreshComplete');
         $scope.$apply()
-    };
+    }
+    
+        // modal add view 
+        $ionicModal.fromTemplateUrl('templates/customer_add.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal
+        })
+
+        $scope.openModal = function(customer) {
+            $scope.modal.show()
+        }
+
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        }
+
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        })
+        
+        // Perform the update action when the user submits the form
+        $scope.doAdd = function() {
+            //$scope.add = new customer();
+            console.log('add; ' + JSON.stringify($scope.add));
+            
+            customer.save($scope.add, function() {
+                //data saved. do something here.
+            }); //saves an entry. Assuming $scope.entry is the Entry object  
+        };
 })
 // customer get
-.controller('CustomerCtrl', function($scope, customer, $stateParams, $ionicModal) {
-    var query = customer.get({ id: $stateParams.customerId }, function() {
-        //console.log(JSON.stringify(query.customer[0]));
-        $scope.customer = query.customer[0];
-    })
-    
-    // modal edit view 
-    $ionicModal.fromTemplateUrl('templates/customer_edit.html', {
-        scope: $scope,
-        animation: 'slide-in-up',
-        focusFirstInput: true
-    }).then(function(modal) {
-        $scope.modal = modal
-    });
-    
-    $scope.openModal = function(customer) {
-        console.log(customer);
-        $scope.modal.show()
-    }
+.controller('CustomerCtrl', function($scope, customer, $stateParams, $ionicModal, $timeout) {
+        var query = customer.get({ id: $stateParams.customerId }, function() {
+            //console.log(JSON.stringify(query.customer[0]));
+            $scope.customer = query.customer[0];
+        })
 
-    $scope.closeModal = function() {
-        $scope.modal.hide();
-    };
+        // modal edit view 
+        $ionicModal.fromTemplateUrl('templates/customer_edit.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal
+        })
 
-    $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-    });  
+        $scope.openModal = function(customer) {
+            $scope.modal.show()
+        }
+
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        }
+
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        })
+        
+         // Perform the update action when the user submits the form
+        $scope.doUpdate = function() {
+            $scope.entry = customer.get({ id: $stateParams.customerId }, function() {
+                //console.log('mas...'+ JSON.stringify($scope.entry.customer[0]));
+                $scope.entry.customer = $scope.customer;
+                $scope.entry.$update(function() {
+                });
+            });
+        };  
 })
 // invoices get all
 .controller('InvoicesCtrl', function($scope, invoice) {
